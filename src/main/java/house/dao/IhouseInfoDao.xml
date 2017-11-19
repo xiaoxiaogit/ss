@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="house.dao.IhouseInfoDao">
+    <resultMap id="house" type="houseinfo">
+        <id column="houseid" property="houseid"></id>
+        <result column="housedesc" property="housedesc"></result>
+        <result column="typeid" property="typeid"></result>
+        <result column="monthlyrent" property="monthlyrent"></result>
+        <result column="publishdate" property="publishdate"></result>
+        <collection property="ht" ofType="housetype" >
+            <id column="typeid" property="typeid"></id>
+            <result column="typename" property="typename"></result>
+        </collection>
+    </resultMap>
+    <select id="houseInfo" resultMap="house">
+        SELECT * FROM houseinfo,housetype WHERE houseinfo.typeid=housetype.typeid ORDER BY publishdate DESC
+    </select>
+    <!--genjuhuxingchaxun-->
+    <resultMap  id="list" type="houseinfo">
+        <id column="houseid" property="houseid"></id>
+        <result column="housedesc" property="housedesc"></result>
+        <result column="monthlyrent" property="monthlyrent"></result>
+        <result column="publishdate" property="publishdate"></result>
+        <result column="typeid" property="typeid"></result>
+        <collection property="ht" ofType="housetype">
+            <id column="typeid"></id>
+            <result column="typename"></result>
+        </collection>
+    </resultMap>
+    <select id="houselist" resultMap="list">
+        SELECT * FROM  houseinfo,housetype WHERE houseinfo.typeid=housetype.typeid AND houseinfo.typeid=#{typeid} ORDER BY publishdate DESC
+    </select>
+   <!-- chaxunhuxingming-->
+    <select id="houseType" resultType="housetype">
+        SELECT * from housetype
+    </select>
+    <!--tianjiafnagwuxinxi-->
+    <insert id="insert">
+        INSERT INTO houseinfo(housedesc,typeid,monthlyrent,publishdate) VALUES (#{housedesc},#{typeid},#{monthlyrent},#{publishdate})
+    </insert>
+    <resultMap id="House2" type="houseinfo">
+    <id column="houseid" property="houseid"></id>
+    <result column="housedesc" property="housedesc"></result>
+    <result column="typeid" property="typeid"></result>
+    <result column="publishdate" property="publishdate"></result>
+    <collection property="housetypes" ofType="Housetype">
+        <id column="typeid" property="typeid"></id>
+        <result column="typename" property="typename"></result>
+    </collection>
+    </resultMap>
+    <select id="infolists" resultMap="House2">
+        SELECT * FROM houseinfo,housetype
+        WHERE houseinfo.typeid=housetype.typeid
+        AND houseinfo.housedesc LIKE concat('%', #{housedesc} ,'%')
+    </select>
+</mapper>

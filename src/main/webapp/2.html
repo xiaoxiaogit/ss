@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="http://jqueryui.com/resources/demos/style.css">
+
+    <!--<style>
+        #feedback { font-size: 1.4em; }
+        #selectable .ui-selecting { background: #FECA40; }
+        #selectable .ui-selected { background: #F39814; color: white; }
+        #selectable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+        #selectable li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; }
+    </style>-->
+
+    <script>
+        $(function() {
+            $( "#tabs" ).tabs();
+            $("#btn").button();
+            /*可以拖动*/
+           // $("#btn2").button().draggable();
+        });
+
+        /*选择器*/
+        $(function () {
+            $( "#selectable" ).selectable();
+        })
+
+        /*对话框*/
+        $(function() {
+            $( "#dialog" ).dialog();
+        });
+        /*日期 控件*/
+        $(function() {
+            $( "#date" ).datepicker();
+        });
+          /*滑块*/
+        $(function() {
+            $( "#slider" ).slider();
+        });
+
+        $(function() {
+            $( "#age" ).tooltip();
+        });
+    </script>
+</head>
+<body>
+<div id="tabs">
+    <ul>
+        <li><a href="#tabs-1">第一个</a></li>
+        <li><a href="#tabs-2">第二个</a></li>
+    </ul>
+    <div id="tabs-1">
+        <a href="#" id="btn">哈哈</a>
+    </div>
+    <div id="tabs-2">
+        <a href="#" id="btn2">可以拖动我</a>
+    </div>
+</div>
+
+<!--
+<ol id="selectable">
+    <li class="ui-widget-content">Item 1</li>
+    <li class="ui-widget-content">Item 2</li>
+    <li class="ui-widget-content">Item 3</li>
+    <li class="ui-widget-content">Item 4</li>
+    <li class="ui-widget-content">Item 5</li>
+    <li class="ui-widget-content">Item 6</li>
+    <li class="ui-widget-content">Item 7</li>
+</ol>
+-->
+
+<div id="dialog" title="基本的对话框">
+    <p>这是一个默认的对话框，用于显示信息。对话框窗口可以移动，调整尺寸，默认可通过 'x' 图标关闭。</p>
+</div>
+
+<!--
+<input type="text" name="date" id="date" value="日期控件"/>
+-->
+
+<!-- /*滑块*/-->
+<!--<div id="slider"></div>-->
+
+<!--<p><label for="age">工具提示框：</label><input id="age" title="这是提示框。"></p>-->
+
+</body>
+</html>
